@@ -17,4 +17,5 @@ this is useless for the average user, only use this if you want to customize PKI
 1. cd into the root directory of this repository
 2. run `sudo ./image_create.sh`.
 3. a image will be placed in the root directory of this repo called `icarus_ba.img`
+
 it is an ext4 image that has an original size of 100MB, which is then shrinked to its minimum after adding PKIMetadata and icarus_ba.sh.
