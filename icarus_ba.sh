@@ -70,3 +70,5 @@ main() {
 	reboot -f
 	mexit "should not have reached here. error occured."
 }
+
+main
