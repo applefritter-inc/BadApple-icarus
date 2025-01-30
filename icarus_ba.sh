@@ -63,7 +63,7 @@ main() {
 	move_out_to_stateful
 	umount /stateful
 	crossystem disable_dev_request=1 || mexit "how did this shit even fail??"
-	read -p "payload finished! enter to reboot"
+	read -p "payload finished! enter to reboot. you will boot into verified mode."
 	reboot -f
 	echo "should not have reached here. error occured."
 	exit
