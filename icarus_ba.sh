@@ -65,7 +65,7 @@ main() {
 	crossystem disable_dev_request=1 || mexit "how did this shit even fail??"
 	read -p "payload finished! enter to reboot"
 	reboot -f
-	mexit "should not have reached here. error occured."
+	echo "should not have reached here. error occured."
 	exit
 }
 
