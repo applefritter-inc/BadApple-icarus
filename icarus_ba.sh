@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# most code taken from the inshim.sh payload from icarus.
+# some code taken from the inshim.sh payload from icarus.
 
 mexit(){
 	printf "$1"
@@ -8,40 +8,37 @@ mexit(){
 	exit
 }
 
-[ "$EUID" -ne 0 ] && mexit "not root. (this shouldnt be happening, badapple gets a root shell.)"
-
-get_largest_cros_blockdev() {
-	local largest size dev_name tmp_size remo
-	size=0
-	for blockdev in /sys/block/*; do
-		dev_name="${blockdev##*/}"
-		echo -e "$dev_name" | grep -q '^\(loop\|ram\)' && continue
-		tmp_size=$(cat "$blockdev"/size)
-		remo=$(cat "$blockdev"/removable)
-		if [ "$tmp_size" -gt "$size" ] && [ "${remo:-0}" -eq 0 ]; then
-			case "$(sfdisk -d "/dev/$dev_name" 2>/dev/null)" in
-				*'name="STATE"'*'name="KERN-A"'*'name="ROOT-A"'*)
-					largest="/dev/$dev_name"
-					size="$tmp_size"
-					;;
-			esac
-		fi
-	done
-	echo -e "$largest"
-}
-
-format_part_number() {
-	echo -n "$1"
-	echo "$1" | grep -q '[0-9]$' && echo -n p
-	echo "$2"
-}
-
 get_stateful() {
-    cros_dev="$(get_largest_cros_blockdev)"
-    if [ -z "$cros_dev" ]; then
-		mexit "No CrOS SSD found on device. Failing."
+	# get_largest_cros_blockdev does not work in BadApple.
+	ROOTDEV_LIST=$(cat /usr/sbin/write_gpt.sh | grep -w "DEFAULT_ROOTDEV" | head -n 1 | sed -E 's/^.*DEFAULT_ROOTDEV="([^"]+)".*$/\1/')
+    if [ -z "$ROOTDEV_LIST" ]; then
+		mexit "could not parse for rootdev devices. this should not have happened."
     fi
-    stateful=$(format_part_number "$cros_dev" 1)
+    for rootdev_device in $ROOTDEV_LIST;
+	do
+		device_list=$(ls $rootdev_device 2> /dev/null)
+		returncode=$?
+		[ "$returncode" -eq 1 ] && continue
+		# grep for host, nvme and mmc
+		device_type=$(echo "$rootdev_device" | grep -oE 'mmc|nvme|host' | head -n 1)
+		case $device_type in
+		"mmc")
+			stateful=/dev/mmcblk0p1
+			break
+			;;
+		"nvme")
+			stateful=/dev/nvme0n1
+			break
+			;;
+		"host")
+			stateful=/dev/sda1
+			break
+			;;
+		*)
+			mexit "an unknown error occured. this should not have happened."
+			;;
+		esac
+	done
 }
 
 does_out_exist() {
@@ -69,6 +66,7 @@ main() {
 	read -p "payload finished! enter to reboot"
 	reboot -f
 	mexit "should not have reached here. error occured."
+	exit
 }
 
 main
