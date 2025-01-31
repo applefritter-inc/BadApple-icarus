@@ -16,11 +16,11 @@ get_stateful() {
     fi
     for rootdev_device in $ROOTDEV_LIST;
 	do
-		device_list=$(ls $rootdev_device 2> /dev/null)
-		returncode=$?
+		local device_list=$(ls $rootdev_device 2> /dev/null)
+		local returncode=$?
 		[ "$returncode" -eq 1 ] && continue
 		# grep for host, nvme and mmc
-		device_type=$(echo "$rootdev_device" | grep -oE 'mmc|nvme|host' | head -n 1)
+		local device_type=$(echo "$rootdev_device" | grep -oE 'mmc|nvme|host' | head -n 1)
 		case $device_type in
 		"mmc")
 			stateful=/dev/mmcblk0p1
