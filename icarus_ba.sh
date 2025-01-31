@@ -10,7 +10,7 @@ mexit(){
 
 get_stateful() {
 	# get_largest_cros_blockdev does not work in BadApple.
-	ROOTDEV_LIST=$(cat /usr/sbin/write_gpt.sh | grep -w "DEFAULT_ROOTDEV" | head -n 1 | sed -E 's/^.*DEFAULT_ROOTDEV="([^"]+)".*$/\1/')
+	local ROOTDEV_LIST=$(cat /usr/sbin/write_gpt.sh | grep -w "DEFAULT_ROOTDEV" | head -n 1 | sed -E 's/^.*DEFAULT_ROOTDEV="([^"]+)".*$/\1/')
     if [ -z "$ROOTDEV_LIST" ]; then
 		mexit "could not parse for rootdev devices. this should not have happened."
     fi
