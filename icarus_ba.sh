@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# some code taken from the inshim.sh payload from icarus.
+# written by appleflyer
 
 mexit(){
 	printf "$1"
