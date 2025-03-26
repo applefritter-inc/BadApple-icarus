@@ -1,4 +1,5 @@
 # icarus but for badapple
+# UPDATED TO HAVE THE NEW ICARUS CERT
 pretty straightforward process. this acts as a way to execute the icarus payload initally meant to be executed in shims. \
 BadApple is an exploit to gain ACE(arbitary code execution) as root in developer mode whilst enterprise enrolled. SH1mmer does the same thing, but some boards have been keyrolled.
 
