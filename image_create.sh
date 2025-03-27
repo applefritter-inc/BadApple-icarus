@@ -11,7 +11,7 @@ mkfs.ext4 "$IMG_NAME"
 mkdir -p "$MOUNT_DIR"
 sudo mount -o loop "$IMG_NAME" "$MOUNT_DIR"
 
-sudo cp -r PKIMetadata/ icarus_ba.sh "$MOUNT_DIR"/
+sudo cp -r PKIMetadata/ icarus_ba_mmc.sh icarus_ba_nvme.sh "$MOUNT_DIR"/
 sync
 sudo umount "$MOUNT_DIR"
 rmdir "$MOUNT_DIR"
