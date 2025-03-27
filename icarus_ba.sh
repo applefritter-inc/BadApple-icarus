@@ -18,7 +18,7 @@ get_stateful() {
 	do
 		local device_list=$(ls $rootdev_device 2> /dev/null)
 		local returncode=$?
-		[ "$returncode" -eq 1 ] && continue
+		[ "$returncode" -ne 0 ] && continue
 		# grep for host, nvme and mmc
 		local device_type=$(echo "$rootdev_device" | grep -oE 'mmc|nvme|host' | head -n 1)
 		case $device_type in
