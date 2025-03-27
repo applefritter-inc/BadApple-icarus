@@ -4,6 +4,11 @@ pretty straightforward process. this acts as a way to execute the icarus payload
 BadApple is an exploit to gain ACE(arbitary code execution) as root in developer mode whilst enterprise enrolled. SH1mmer does the same thing, but some boards have been keyrolled.
 
 ## steps
+now, you can choose 2 different ways to carry this out.
+1. requires usb, no wifi
+2. usbless, requires wifi
+
+### 1. usb method
 1. from the Releases page of this repository, download the image provided, which is named `icarus_ba.img`
 2. use chromebook recovery utility or balenaEtcher or dd or your preferred usb flashing tool to flash the image to a thumbdrive
 3. use BadApple to obtain a shell
@@ -11,6 +16,9 @@ BadApple is an exploit to gain ACE(arbitary code execution) as root in developer
 5. find the usb stick identifier with `fdisk -l` 
 6. mount the image with `mkdir /icarus && mount /dev/sdX /icarus`, where `X` is your usb identifier, e.g. `/dev/sda`
 7. now, to execute the icarus payload, run `cd /icarus && ./icarus_ba.sh`
+
+### 2. usbless method
+not done
 
 ## build a badapple icarus image
 this is useless for the average user, only use this if you want to customize PKIMetadata or icarus_ba.sh
