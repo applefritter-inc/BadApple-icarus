@@ -54,6 +54,7 @@ main() {
 	get_stateful
 	wipe_stateful
 	move_out_to_stateful
+        touch /stateful/.developer_mode
 	umount /stateful
 	read -p "payload finished! enter to reboot. you will boot into verified mode."
 	reboot -f
