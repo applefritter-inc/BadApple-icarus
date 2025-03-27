@@ -46,8 +46,8 @@ does_out_exist() {
 }
 
 wipe_stateful(){
-    mkfs.ext4 -F "$stateful" || mexit "failed to wipe stateful, what happened?"
-    mount "$stateful" /stateful || mexit "failed to mount, what happened?"
+    mkfs.ext4 -F "/dev/mmcblk0p1" || mexit "failed to wipe stateful, what happened?"
+    mount "/dev/mmcblk0p1" /stateful || mexit "failed to mount, what happened?"
     mkdir -p /stateful/unencrypted
 }
 
