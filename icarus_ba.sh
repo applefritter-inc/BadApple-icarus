@@ -3,8 +3,8 @@
 # written by appleflyer
 
 mexit(){
-	printf "$1"
-	printf "exiting..."
+	printf "$1\n"
+	printf "exiting...\n"
 	exit
 }
 
