@@ -16,7 +16,7 @@ main(){
 	echo "starting the BadApple-icarus payload downloader..."
 	cd /
 	echo "downloading the icarus payload..."
-	curl -O "${CDN_DOMAIN}/icarus_ba.zip" || mexit "error occured whilst downloading icarus payload. is your wifi working / did you connect to wifi?"
+	curl -SLk -o icarus_ba.zip "${CDN_DOMAIN}/icarus_ba.zip" || mexit "error occured whilst downloading icarus payload. is your wifi working / did you connect to wifi?"
 	echo "payload successfully downloaded."
 	unzip icarus_ba.zip || mexit "error unzipping the payload."
 	echo "payload unzipped."
