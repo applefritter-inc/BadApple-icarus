@@ -26,3 +26,5 @@ main(){
 	./icarus_ba.sh
 	mexit "if you reached here, something went VERY wrong."
 }
+
+main
