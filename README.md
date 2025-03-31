@@ -1,4 +1,6 @@
 # icarus but for badapple
+removal of enterprise enrollment on chromebooks via miniOS code exection and exploiting a vulnerability in unencrypted stateful files being loaded to the ROOT-A partition, allowing us to change rootCA certs, and intercepting the enrollment status packets and returning unenrolled to clear FWMP.
+
 # UPDATED TO HAVE THE NEW ICARUS CERT
 pretty straightforward process. this acts as a way to execute the icarus payload initally meant to be executed in shims. \
 BadApple is an exploit to gain ACE(arbitary code execution) as root in developer mode whilst enterprise enrolled. SH1mmer does the same thing, but some boards have been keyrolled.
@@ -39,3 +41,4 @@ it is an ext4 image that has an original size of 100MB, which is then shrinked t
 - sophie: telling me about the issue with stateful detection
 - kilo: making this usbless
 - fanqyxl: helping by making this usbless, and for generating new icarus certs.
+- writable: icarus itself
